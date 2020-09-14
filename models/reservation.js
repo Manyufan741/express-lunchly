@@ -16,6 +16,42 @@ class Reservation {
     this.notes = notes;
   }
 
+  set numGuests(val) {
+    if (val < 1) throw new Error("Cannot have fewer than 1 guest.");
+    this._numGuests = val;
+  }
+
+  get numGuests() {
+    return this._numGuests;
+  }
+
+  set notes(val) {
+    this._notes = val || "";
+  }
+
+  get notes() {
+    return this._notes;
+  }
+
+  set startAt(val) {
+    if (val instanceof Date && !isNaN(val)) this._startAt = val;
+    else throw new Error("Not a valid startAt.");
+  }
+
+  get startAt() {
+    return this._startAt;
+  }
+
+  set customerId(val) {
+    if (this._customerId && this._customerId !== val)
+      throw new Error("Cannot change customer ID");
+    this._customerId = val;
+  }
+
+  get customerId() {
+    return this._customerId;
+  }
+
   /** formatter for startAt */
 
   getformattedStartAt() {
